@@ -1,16 +1,20 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Ragdoll : MonoBehaviour
+public class ActiveRagdollController : MonoBehaviour
 {
-    [SerializeField] private int solverIterations;
+    [Header("Ragdoll Options")] [SerializeField]
+    private int solverIterations;
+
     [SerializeField] private int solverVelocityIterations;
     [SerializeField] private float maxAngularVelocity;
 
-    private Rigidbody[] _rigidbodies;
+    [Header("Active Ragdoll Options")] [SerializeField]
+    private Transform animatedRoot, physicalRoot;
 
+    private Rigidbody[] _rigidbodies;
+    private Transform[] animatedTransforms;
+    
+    
     private void Awake()
     {
         _rigidbodies = GetComponentsInChildren<Rigidbody>();
